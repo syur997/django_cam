@@ -10,8 +10,8 @@ class CustomUerAdmin(UserAdmin):
         (
             "Profile", 
             {
-                "fields": ("username", "password", "name",
-                "email", "is_host",),
+                "fields": ("avatar","username", "password", "name",
+                "email", "is_host","gender",),
             },
         ),
         # 권한 허용

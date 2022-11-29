@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
 from pathlib import Path
 import os
 
@@ -33,11 +32,15 @@ if os.environ.get('DJANGO_ALLOWED_HOSTS'):
 
 # Application definition
 
+THIRD_PARTY_APPS = [
+    "rest_framework"
+]
+
 CUSTOM_APPS = [
-    'blog',
-    'single_pages',
-    'django.contrib.sites',
+    'blog.apps.BlogConfig',
+    'single_pages.apps.SinglePagesConfig',
     'users.apps.UsersConfig',
+    'common.apps.CommonConfig',
 ]
 
 SYSTEM_APPS = [
@@ -49,14 +52,14 @@ SYSTEM_APPS = [
     'django.contrib.staticfiles',
 ]
 
-INSTALLED_APPS = SYSTEM_APPS + CUSTOM_APPS
+INSTALLED_APPS = SYSTEM_APPS + THIRD_PARTY_APPS +CUSTOM_APPS
 
-
+# CSRF 해결하기.. DB 만들어야하나..
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+#    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -147,6 +150,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, '_media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+#CSRF_TRUSTED_ORIGINS = [
+#    'http://127.0.0.1:8000',
+#]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

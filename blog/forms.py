@@ -4,4 +4,4 @@ from .models import Fileupload
 class FileUploadForm(ModelForm):
     class Meta:
         model = Fileupload
-        fields = ['title', 'imgfile']
+        fields = ('__all__')
