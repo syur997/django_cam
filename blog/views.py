@@ -111,7 +111,7 @@ def Savepicture():
 @gzip.gzip_page
 def detectme(request):
     try:
-        cam = VideoCamera() #웹캠 호출
+        cam = Savepicture() #웹캠 호출
         # frame단위로 이미지를 계속 송출한다
         return StreamingHttpResponse(gen(cam), content_type="multipart/x-mixed-replace;boundary=frame")
     except:  # This is bad! replace it with proper handling
